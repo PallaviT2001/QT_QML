@@ -25,7 +25,7 @@ Window {
         model: studentmodel
         delegate: studentdelegate
         //clip: true
-        spacing :5
+        //spacing :5
     }
 
     Component{

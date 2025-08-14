@@ -8,8 +8,7 @@ Window {
     width: 550
     height: 1000
     visible: true
-    title: qsTr("Registraction Aplication")
-
+    title: qsTr("Student Registration")
 
     Loader {
         id: pageLoader
@@ -29,9 +28,6 @@ Window {
         function onSignUpClicked() {
             pageLoader.source = "RegisterPage.qml"
         }
-
-        // function onSubmitButtonClicked(){
-        // }
 
         function onCancelButtonClicked(){
             pageLoader.source = "HomePage.qml"
@@ -57,4 +53,3 @@ Window {
     }
 
 }
-

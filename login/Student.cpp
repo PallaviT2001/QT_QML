@@ -24,14 +24,11 @@ Student::~Student()
 
 QString Student::getUserName() const
 {
-    // qDebug()<<Q_FUNC_INFO;
-
     return m_userName;
 }
 
 void Student::setUserName(const QString &newUserName)
 {
-    // qDebug()<<Q_FUNC_INFO;
 
     if (m_userName == newUserName)
         return;
@@ -41,14 +38,12 @@ void Student::setUserName(const QString &newUserName)
 
 QString Student::getFatherName() const
 {
-    // qDebug()<<Q_FUNC_INFO;
 
     return m_fatherName;
 }
 
 void Student::setFatherName(const QString &newFatherName)
 {
-    // qDebug()<<Q_FUNC_INFO;
 
     if (m_fatherName == newFatherName)
         return;
@@ -58,14 +53,12 @@ void Student::setFatherName(const QString &newFatherName)
 
 QString Student::getPassword() const
 {
-    // qDebug()<<Q_FUNC_INFO;
 
     return m_password;
 }
 
 void Student::setPassword(const QString &newPassword)
 {
-    // qDebug()<<Q_FUNC_INFO;
 
     if (m_password == newPassword)
         return;
@@ -75,14 +68,12 @@ void Student::setPassword(const QString &newPassword)
 
 QString Student::getEmail() const
 {
-    // qDebug()<<Q_FUNC_INFO;
 
     return m_email;
 }
 
 void Student::setEmail(const QString &newEmail)
 {
-    // qDebug()<<Q_FUNC_INFO;
 
     if (m_email == newEmail)
         return;
@@ -92,14 +83,12 @@ void Student::setEmail(const QString &newEmail)
 
 QString Student::getPhoneNumber() const
 {
-    // qDebug()<<Q_FUNC_INFO;
 
     return m_phoneNumber;
 }
 
 void Student::setPhoneNumber(QString newMobileNumber)
 {
-    // qDebug()<<Q_FUNC_INFO;
 
     if (newMobileNumber == newMobileNumber)
         return;
@@ -110,14 +99,12 @@ void Student::setPhoneNumber(QString newMobileNumber)
 
 QString Student::getConfirmPassword() const
 {
-    // qDebug()<<Q_FUNC_INFO;
 
     return m_confirmPassword;
 }
 
 void Student::setConfirmPassword(const QString &newConfirmPassword)
 {
-    // qDebug()<<Q_FUNC_INFO;
 
     if (m_confirmPassword == newConfirmPassword)
         return;
@@ -194,7 +181,7 @@ bool Student::addStudent(const QString &studentName, const QString &phoneNumber,
     m_studentList.append(newStudent);
 
     emit registrationSuccess();
-    qDebug() << "Student added Total students:" << m_studentList.size();
+    qDebug() << "Student added successfully:" << m_studentList.size();
     return true;
 }
 

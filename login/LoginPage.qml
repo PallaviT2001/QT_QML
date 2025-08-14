@@ -5,7 +5,7 @@ import QtQuick.Layouts
 Rectangle{
     id: loginPage
     anchors.fill: parent
-    color: "lightgrey"
+    color: "lightblue"
 
     signal backButtonClicked()
 
@@ -17,7 +17,7 @@ Rectangle{
 
         Text {
             id: welcomePage
-            text: qsTr("Welcome Back")
+            text: qsTr("Student LoginPage")
             font.bold: true
             font.pixelSize: 30
             anchors.horizontalCenter: parent.horizontalCenter

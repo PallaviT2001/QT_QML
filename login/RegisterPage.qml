@@ -5,10 +5,8 @@ import QtQuick.Layouts
 Rectangle {
     id: registerPage
     anchors.fill: parent
-    color: "lightgrey"
+    color: "lightblue"
 
-    // signal submitButtonClicked(string userName, string phoneNumber, string fatherName, string email,
-    //                            string password, string confirmPassword)
     signal cancelButtonClicked()
 
     Column{
@@ -97,13 +95,13 @@ Rectangle {
             font.pixelSize: 14
             color: "White"
             onEditingFinished: {
-                        if (!emailText.text.includes("@") || !emailText.text.includes(".com")) {
-                            emailText.color = "red"
-                            console.log("Invalid email format")
-                        } else {
-                            emailText.color = "white"
-                        }
-                    }
+                if (!emailText.text.includes("@") || !emailText.text.includes(".com")) {
+                    emailText.color = "red"
+                    console.log("Invalid email format")
+                } else {
+                    emailText.color = "white"
+                }
+            }
         }
 
         Text {
@@ -142,18 +140,19 @@ Rectangle {
             echoMode: TextInput.Password
         }
 
-        Row{
-            id: rowLayout
-            spacing: 60
+        Column {
+            id: buttonColumn
+            spacing: 15
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.topMargin: 20
 
-            Button{
-                id: cancelButton
-                width: registerPage.width / 5
+            Button {
+                id: submitButton
+                width: registerPage.width / 4
                 height: 50
 
                 Text {
-                    id: cancel
-                    text: qsTr("Cancel")
+                    text: qsTr("Submit")
                     anchors.centerIn: parent
                     font.bold: true
                     font.pixelSize: 14
@@ -161,26 +160,57 @@ Rectangle {
                 }
 
                 onClicked: {
-                    console.log("Cancel Button Cicked")
-                    cancelButtonClicked()
+                    console.log("Submit Button Clicked")
+                    Login.addStudent(studentNameText.text,
+                                     phoneNumberText.text,
+                                     fathereNameText.text,
+                                     emailText.text,
+                                     passwordText.text,
+                                     confirmPasswordText.text)
                 }
 
-                background: Rectangle{
-                    color: cancelButton.pressed ? "#5A5A5A" : "transparent"
-                    anchors.fill: cancelButton
+                background: Rectangle {
+                    color: submitButton.pressed ? "#5A5A5A" : "transparent"
+                    anchors.fill: parent
                     border.color: "Black"
                     border.width: 2
-                    radius: 180
+                    radius: 0
                 }
             }
 
-            Button{
-                id: clearButton
-                width: registerPage.width / 5
+            Button {
+                id: cancelButton
+                width: registerPage.width / 4
                 height: 50
 
                 Text {
-                    id: clear
+                    text: qsTr("Back")
+                    anchors.centerIn: parent
+                    font.bold: true
+                    font.pixelSize: 14
+                    color: "Black"
+                }
+
+                onClicked: {
+                    console.log("Cancel Button Clicked")
+                    cancelButtonClicked()
+                }
+
+                background: Rectangle {
+                    color: cancelButton.pressed ? "#5A5A5A" : "transparent"
+                    anchors.fill: parent
+                    border.color: "Black"
+                    border.width: 2
+                    radius: 0
+                }
+            }
+
+            Button {
+                id: clearButton
+                width: registerPage.width / 4
+                height: 50
+
+                Text {
                     text: qsTr("Clear")
                     anchors.centerIn: parent
                     font.bold: true
@@ -189,8 +219,7 @@ Rectangle {
                 }
 
                 onClicked: {
-                    console.log("Clear Button Cicked")
-
+                    console.log("Clear Button Clicked")
                     studentNameText.text = ""
                     phoneNumberText.text = ""
                     fathereNameText.text = ""
@@ -199,55 +228,13 @@ Rectangle {
                     confirmPasswordText.text = ""
                 }
 
-                background: Rectangle{
+                background: Rectangle {
                     color: clearButton.pressed ? "#5A5A5A" : "transparent"
-                    anchors.fill: clearButton
+                    anchors.fill: parent
                     border.color: "Black"
                     border.width: 2
-                    radius: 180
-                }
-            }
-        }
-        Button{
-            id: submitButton
-            width: registerPage.width / 4
-            height: 50
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            Text {
-                id: submit
-                text: qsTr("Submit")
-                anchors.centerIn: parent
-                font.bold: true
-                font.pixelSize: 14
-                color: "Black"
-            }
-
-            onClicked: {
-                console.log("Submit Button Cicked")
-                // submitButtonClicked (
-                //             studentNameText.text,
-                //             phoneNumberText.text,
-                //             fathereNameText.text,
-                //             emailText.text,
-                //             passwordText.text,
-                //             confirmPasswordText.text)
-
-                Login.addStudent(studentNameText.text,
-                                 phoneNumberText.text,
-                                 fathereNameText.text,
-                                 emailText.text,
-                                 passwordText.text,
-                                 confirmPasswordText.text)
-            }
-
-            background: Rectangle{
-                color: submitButton.pressed ? "#5A5A5A" : "transparent"
-                anchors.fill: submitButton
-                border.color: "Black"
-                border.width: 2
-                radius: 180
-            }
+                    radius: 0
+            }   }
         }
     }
 }

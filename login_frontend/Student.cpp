@@ -24,7 +24,7 @@ Student::~Student()
 
 QString Student::getUserName() const
 {
-   return m_userName;
+    return m_userName;
 }
 
 void Student::setUserName(const QString &newUserName)
@@ -107,7 +107,7 @@ void Student::setConfirmPassword(const QString &newConfirmPassword)
 {
 
     if (m_confirmPassword == newConfirmPassword)
-    return;
+        return;
     m_confirmPassword = newConfirmPassword;
     emit confirmPasswordChanged();
 }
