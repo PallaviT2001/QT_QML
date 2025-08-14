@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     QQmlContext* context = engine.rootContext();
     context->setContextProperty("Login",&loginHandler);
 
-    const QUrl url(QStringLiteral("qrc:/login_updated_code/main.qml"));
+    const QUrl url(QStringLiteral("qrc:/login_frontend/main.qml"));
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreated,
@@ -49,4 +49,3 @@ int main(int argc, char *argv[])
 
     return app.exec();
 }
-
