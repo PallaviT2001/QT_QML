@@ -1,26 +1,29 @@
 #ifndef BACKENDOPERATIONS_H
 #define BACKENDOPERATIONS_H
+
 #include <QObject>
 #include <QString>
 
-class Backendoperations : public QObject
+class BackendOperations : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString displayText READ displayText WRITE setDisplayText NOTIFY displayTextChanged)
+    Q_PROPERTY(QString displayText READ displayText NOTIFY displayTextChanged)
 
 public:
-    explicit Backendoperations(QObject *parent = nullptr);
+    explicit BackendOperations(QObject *parent = nullptr);
 
-    QString displayText() const;
-    void setDisplayText(const QString &text);
-
-    Q_INVOKABLE void handleButtonClick(const QString &label);
+    QString displayText() const { return m_displayText; }
+    Q_INVOKABLE void handleButtonClick(const QString &text);
 
 signals:
     void displayTextChanged();
 
 private:
     QString m_displayText;
+
+    bool endsWithOperator(const QString &s) const;
+    bool isOperator(QChar c) const;
+    void calculateResult();
 };
 
 #endif // BACKENDOPERATIONS_H
