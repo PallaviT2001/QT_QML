@@ -1,48 +1,100 @@
 #include "Backendoperations.h"
 #include <QJSEngine>
 #include <QJSValue>
+#include <QtMath>
 
-Backendoperations::Backendoperations(QObject *parent)
+BackendOperations::BackendOperations(QObject *parent)
     : QObject(parent), m_displayText("")
 {
 }
 
-QString Backendoperations::displayText() const
+bool BackendOperations::isOperator(QChar c) const
 {
-    return m_displayText;
+    return c == '+' || c == '-' || c == '%' || c == u'×' || c == u'÷' || c == '*' || c == '/';
 }
 
-void Backendoperations::setDisplayText(const QString &text)
+bool BackendOperations::endsWithOperator(const QString &s) const
 {
-    if (m_displayText != text) {
-        m_displayText = text;
+    if (s.isEmpty()) return false;
+    return isOperator(s.back());
+}
+
+void BackendOperations::handleButtonClick(const QString &text)
+{
+    if (text == "AC") {
+        m_displayText.clear();
         emit displayTextChanged();
+        return;
     }
+
+    if (text == "←") {
+        if (!m_displayText.isEmpty())
+            m_displayText.chop(1);
+        emit displayTextChanged();
+        return;
+    }
+
+    if (text == "=") {
+        calculateResult();
+        return;
+    }
+
+    if (text.size() == 1 && isOperator(text.at(0))) {
+        const QChar c = text.at(0);
+
+        if (m_displayText.isEmpty()) {
+            if (c == '-') {
+                m_displayText.append(c);
+                emit displayTextChanged();
+            }
+            return;
+        }
+
+        if (endsWithOperator(m_displayText)) {
+            m_displayText.chop(1);
+        }
+        m_displayText.append(c);
+        emit displayTextChanged();
+        return;
+    }
+
+    if (text == ".") {
+        int i = m_displayText.size() - 1;
+        while (i >= 0 && !isOperator(m_displayText.at(i))) --i;
+        const QString currentToken = m_displayText.mid(i + 1);
+        if (currentToken.contains('.'))
+            return;
+    }
+
+    m_displayText.append(text);
+    emit displayTextChanged();
 }
 
-void Backendoperations::handleButtonClick(const QString &label)
+void BackendOperations::calculateResult()
 {
-    if (label == "AC") {
-        setDisplayText("");
-    }
-    else if (label == "←") {
-        if (!m_displayText.isEmpty())
-            setDisplayText(m_displayText.left(m_displayText.length() - 1));
-    }
-    else if (label == "=") {
-        QJSEngine engine;
-        QString expression = m_displayText;
-        expression.replace("×", "*");
-        expression.replace("÷", "/");
+    if (m_displayText.isEmpty()) return;
 
-        QJSValue result = engine.evaluate(expression);
-        if (!result.isError()) {
-            setDisplayText(result.toString());
+    QString expr = m_displayText;
+    expr.replace(u'×', '*');
+    expr.replace(u'÷', '/');
+
+    if (endsWithOperator(expr))
+        expr.chop(1);
+
+    QJSEngine engine;
+    QJSValue result = engine.evaluate(expr);
+
+    if (result.isError()) {
+        m_displayText = "Error";
+    } else {
+        const double val = result.toNumber();
+        if (std::isfinite(val)) {
+            // Pretty formatting: up to 15 significant digits, trim trailing zeros
+            QString out = QString::number(val, 'g', 15);
+            m_displayText = out;
         } else {
-            setDisplayText("Error");
+            m_displayText = "Error";
         }
     }
-    else {
-        setDisplayText(m_displayText + label);
-    }
+    emit displayTextChanged();
 }

@@ -1,70 +1,69 @@
 #include "StudentManager.h"
+#include <QDebug>
 
 StudentManager::StudentManager()
 {
-    qDebug()<<Q_FUNC_INFO;
+    qDebug() << Q_FUNC_INFO;
 }
 
 StudentManager::~StudentManager()
 {
-    qDebug()<<Q_FUNC_INFO;
+    qDebug() << Q_FUNC_INFO;
     for (student* s : std::as_const(m_studentList)) {
         delete s;
     }
     m_studentList.clear();
 }
 
-
-bool StudentManager::addStudent(const QString &studentName, const QString &phoneNumber, const QString &fatherName, const QString &email, const QString &password, const QString &confirmPassword)
+bool StudentManager::addStudent(const QString &studentName, const QString &phoneNumber,
+                                const QString &fatherName, const QString &email,
+                                const QString &password, const QString &confirmPassword)
 {
-    qDebug()<<Q_FUNC_INFO;
+    qDebug() << Q_FUNC_INFO;
 
+    // --- Validation ---
+    if (studentName.isEmpty() || phoneNumber.isEmpty() || fatherName.isEmpty() || email.isEmpty() ||
+        password.isEmpty() || confirmPassword.isEmpty()) {
+        qDebug() << "No Empty Fields are Allowed";
+        return false;
+    }
+
+    if (password.length() < 8) {
+        qDebug() << "Password must be at least 8 characters long";
+        return false;
+    }
+
+    if (password != confirmPassword) {
+        qDebug() << "Passwords do not match";
+        return false;
+    }
+
+    // --- Store actual user input instead of hardcoded data ---
     student* newStudent = new student(this);
-    newStudent->setUserName("Pallavi t");
-    newStudent->setPhoneNumber("8431664310");
-    newStudent->setFatherName("Thippeswamy");
-    newStudent->setEmail("pallavit8046@gmail.com");
-    newStudent->setPassword("pallavi@2001");
-    newStudent->setConfirmPassword("pallavi@2001");
+    newStudent->setUserName(studentName);
+    newStudent->setPhoneNumber(phoneNumber);
+    newStudent->setFatherName(fatherName);
+    newStudent->setEmail(email);
+    newStudent->setPassword(password);
+    newStudent->setConfirmPassword(confirmPassword);
 
-    // if (studentName.isEmpty() || phoneNumber.isEmpty() || fatherName.isEmpty() || email.isEmpty() ||
-    //     password.isEmpty() || confirmPassword.isEmpty()) {
-    //     qDebug() << "No Empty Fields are Allowed";
-    //     return false;
-    // }
-
-    // if (password.length() < 8) {
-    //     qDebug() << "Password must be at least 8 characters long";
-    //     return false;
-    // }
-
-    // if (password != confirmPassword) {
-    //     qDebug() << "Passwords do not match";
-    //     return false;
-    // }
-
-    // student* newStudent = new student(this);
-    // newStudent->setUserName(studentName);
-    // newStudent->setPhoneNumber(phoneNumber);
-    // newStudent->setFatherName(fatherName);
-    // newStudent->setEmail(email);
-    // newStudent->setPassword(password);
-    // newStudent->setConfirmPassword(confirmPassword);
-
+    beginInsertRows(QModelIndex(), m_studentList.size(), m_studentList.size());
     m_studentList.append(newStudent);
+    endInsertRows();
 
     emit registrationSuccess();
-    qDebug() << "Student added Total students:" << m_studentList.size();
+    qDebug() << "Student added. Total students:" << m_studentList.size();
     return true;
 }
 
 bool StudentManager::checkLoginInfo(const QString &email, const QString &password)
 {
-    qDebug()<<Q_FUNC_INFO;
+    qDebug() << Q_FUNC_INFO;
 
     for (student* s : std::as_const(m_studentList)) {
-        if(s->getEmail() == email && s->getPassword() == password){
-            qDebug() << "Login Successfull.";
+        qDebug() << "Checking:" << s->getEmail() << s->getPassword();
+        if (s->getEmail() == email && s->getPassword() == password) {
+            qDebug() << "Login Successful.";
             emit loginSuccess();
             return true;
         }
@@ -72,7 +71,6 @@ bool StudentManager::checkLoginInfo(const QString &email, const QString &passwor
     qDebug() << "Login failed or Invalid User";
     return false;
 }
-
 
 int StudentManager::rowCount(const QModelIndex &parent) const
 {
@@ -82,25 +80,27 @@ int StudentManager::rowCount(const QModelIndex &parent) const
 
 QVariant StudentManager::data(const QModelIndex &index, int role) const
 {
-    const student* student = m_studentList.at(index.row());
+    if (!index.isValid() || index.row() >= m_studentList.size())
+        return QVariant();
+
+    const student* s = m_studentList.at(index.row());
 
     switch (role) {
     case USER_NAME:
-        return student->getUserName();
+        return s->getUserName();
     case PHONE_NUMBER:
-        return student->getPhoneNumber();
+        return s->getPhoneNumber();
     case FATHER_NAME:
-        return student->getFatherName();
+        return s->getFatherName();
     case EMAIL:
-        return student->getEmail();
+        return s->getEmail();
     case PASSWORD:
-        return student->getPassword();
+        return s->getPassword();
     case CONFIRM_PASSWORD:
-        return student->getConfirmPassword();
+        return s->getConfirmPassword();
     default:
         return QVariant();
     }
-    return QVariant();
 }
 
 QHash<int, QByteArray> StudentManager::roleNames() const

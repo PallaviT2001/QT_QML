@@ -5,99 +5,95 @@ import QtQuick.Layouts 1.15
 ApplicationWindow {
     visible: true
     width: 360
-    height: 640
+    height: 560
     title: "Calculator"
 
     Rectangle {
         anchors.fill: parent
-        color: "black"
+        color: "#121212"
 
         ColumnLayout {
             anchors.fill: parent
-            spacing: 10
-            anchors.margins: 10
+            anchors.margins: 12
+            spacing: 12
 
+            // Display
             Rectangle {
                 Layout.fillWidth: true
-                Layout.preferredHeight: 150
-                color: "black"
+                Layout.preferredHeight: 120
+                radius: 10
+                color: "#1e1e1e"
+                border.color: "#2a2a2a"
 
                 Text {
-                    // anchors.right: parent.right
-                    // anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.right: parent.right
+                    anchors.fill: parent
+                    anchors.margins: 16
                     horizontalAlignment: Text.AlignRight
-
-                    font.pixelSize: 40
+                    verticalAlignment: Text.AlignVCenter
+                    font.pixelSize: 38
                     color: "white"
-                    text: backend.displayText    // Directly using backend
+                    text: backend.displayText
+                    elide: Text.ElideLeft
                     wrapMode: Text.NoWrap
                 }
             }
 
-            Component {
-                id: calcButtonComponent
-                Button {
-                    id: btn
-                    property color bgColor: "#3a3a3a"
-                    property color textColor: "white"
-                    font.pixelSize: 20
-
-                    background: Rectangle {
-                        radius: 8     // small rounded rectangle
-                        color: btn.bgColor
-                    }
-
-                    contentItem: Text {
-                        text: btn.text
-                        font.pixelSize: 20
-                        color: btn.textColor
-                        anchors.centerIn: parent
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                    }
-
-                    implicitWidth: 70
-                    implicitHeight: 50
-                    Layout.preferredWidth: parent ? parent.width / 4 - 10 : 70
-                    Layout.preferredHeight: 50
-
-                    onClicked: backend.handleButtonClick(btn.text) // Directly call C++
-                }
-            }
-
-            GridLayout {
+            // Keypad
+            Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                columns: 4
-                rowSpacing: 10
-                columnSpacing: 10
+                radius: 10
+                color: "#181818"
+                border.color: "#262626"
 
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "AC"; item.bgColor = "orange" } }
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "%"; item.bgColor = "#d35400" } }
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "←"; item.bgColor = "#d35400" } }
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "÷"; item.bgColor = "#d35400" } }
+                // 4 columns x 5 rows = 20 buttons, perfectly aligned
+                GridLayout {
+                    id: grid
+                    anchors.fill: parent
+                    anchors.margins: 10
+                    columnSpacing: 10
+                    rowSpacing: 10
+                    columns: 4
 
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "7"; item.bgColor = "#d35400" } }
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "8"; item.bgColor = "#d35400" } }
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "9"; item.bgColor = "#d35400" } }
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "×"; item.bgColor = "#d35400" } }
+                    // Compute uniform sizes
+                    property real cellW: (width - (columns - 1) * columnSpacing) / columns
+                    property int rows: 5
+                    property real cellH: (height - (rows - 1) * rowSpacing) / rows
 
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "4"; item.bgColor = "#d35400" } }
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "5"; item.bgColor = "#d35400" } }
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "6"; item.bgColor = "#d35400" } }
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "-"; item.bgColor = "#d35400" } }
+                    Repeater {
+                        model: [
+                            "AC", "%",  "←", "÷",
+                            "7",  "8",  "9", "×",
+                            "4",  "5",  "6", "-",
+                            "1",  "2",  "3", "+",
+                            "00", "0",  ".", "="
+                        ]
 
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "1"; item.bgColor = "#d35400" } }
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "2"; item.bgColor = "#d35400" } }
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "3"; item.bgColor = "#d35400" } }
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "+"; item.bgColor = "#d35400" } }
-
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "00"; item.bgColor = "#d35400" } }
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "0"; item.bgColor = "#d35400" } }
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "."; item.bgColor = "#d35400" } }
-                Loader { sourceComponent: calcButtonComponent; onLoaded: { item.text = "="; item.bgColor = "#27ae60" } }
+                        delegate: Button {
+                            Layout.preferredWidth: grid.cellW
+                            Layout.preferredHeight: grid.cellH
+                            font.pixelSize: 20
+                            text: modelData
+                            background: Rectangle {
+                                radius: 10
+                                color: (text === "AC") ? "#ff8c00"
+                                      : (text === "=")  ? "green"
+                                      : (text === "+" || text === "-" || text === "×" || text === "÷" || text === "%") ? "blue"
+                                      : "#2c2c2c"
+                            }
+                            contentItem: Text {
+                                text: parent.text
+                                color: "white"
+                                font.pixelSize: 20
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                                anchors.fill: parent
+                                anchors.margins: 2
+                            }
+                            onClicked: backend.handleButtonClick(text)
+                        }
+                    }
+                }
             }
         }
     }
