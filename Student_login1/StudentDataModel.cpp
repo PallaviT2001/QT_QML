@@ -19,37 +19,37 @@ bool StudentDataModel::addStudent(const QString &studentName, const QString &pho
 {
     qDebug()<<Q_FUNC_INFO;
 
-    Student* newStudent = new Student(this);
-    newStudent->setUserName("Darshan Gowda R");
-    newStudent->setPhoneNumber("1234567899");
-    newStudent->setFatherName("Ramesh N");
-    newStudent->setEmail("darshangowda@gmail.com");
-    newStudent->setPassword("Darshangowda@2002");
-    newStudent->setConfirmPassword("Darshangowda@2002");
-
-    // if (studentName.isEmpty() || phoneNumber.isEmpty() || fatherName.isEmpty() || email.isEmpty() ||
-    //     password.isEmpty() || confirmPassword.isEmpty()) {
-    //     qDebug() << "No Empty Fields are Allowed";
-    //     return false;
-    // }
-
-    // if (password.length() < 8) {
-    //     qDebug() << "Password must be at least 8 characters long";
-    //     return false;
-    // }
-
-    // if (password != confirmPassword) {
-    //     qDebug() << "Passwords do not match";
-    //     return false;
-    // }
-
     // Student* newStudent = new Student(this);
-    // newStudent->setUserName(studentName);
-    // newStudent->setPhoneNumber(phoneNumber);
-    // newStudent->setFatherName(fatherName);
-    // newStudent->setEmail(email);
-    // newStudent->setPassword(password);
-    // newStudent->setConfirmPassword(confirmPassword);
+    // newStudent->setUserName("Darshan Gowda R");
+    // newStudent->setPhoneNumber("1234567899");
+    // newStudent->setFatherName("Ramesh N");
+    // newStudent->setEmail("darshangowda@gmail.com");
+    // newStudent->setPassword("Darshangowda@2002");
+    // newStudent->setConfirmPassword("Darshangowda@2002");
+
+    if (studentName.isEmpty() || phoneNumber.isEmpty() || fatherName.isEmpty() || email.isEmpty() ||
+        password.isEmpty() || confirmPassword.isEmpty()) {
+        qDebug() << "No Empty Fields are Allowed";
+        return false;
+    }
+
+    if (password.length() < 8) {
+        qDebug() << "Password must be at least 8 characters long";
+        return false;
+    }
+
+    if (password != confirmPassword) {
+        qDebug() << "Passwords do not match";
+        return false;
+    }
+
+    Student* newStudent = new Student(this);
+    newStudent->setUserName(studentName);
+    newStudent->setPhoneNumber(phoneNumber);
+    newStudent->setFatherName(fatherName);
+    newStudent->setEmail(email);
+    newStudent->setPassword(password);
+    newStudent->setConfirmPassword(confirmPassword);
 
     m_studentList.append(newStudent);
 

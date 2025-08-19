@@ -6,7 +6,6 @@
 BackendOperations::BackendOperations(QObject *parent)
     : QObject(parent), m_displayText("")
 {
-    // Define all buttons here (label + color)
     auto addButton = [&](const QString &label, const QString &color) {
         QVariantMap btn;
         btn["text"] = label;
@@ -15,33 +14,33 @@ BackendOperations::BackendOperations(QObject *parent)
     };
 
     // Row 1
-    addButton("AC", "#ff8c00");
+    addButton("AC", "orange");
     addButton("%",  "blue");
     addButton("←",  "blue");
     addButton("÷",  "blue");
 
     // Row 2
-    addButton("7", "#2c2c2c");
-    addButton("8", "#2c2c2c");
-    addButton("9", "#2c2c2c");
+    addButton("7", "black");
+    addButton("8", "black");
+    addButton("9", "black");
     addButton("×", "blue");
 
     // Row 3
-    addButton("4", "#2c2c2c");
-    addButton("5", "#2c2c2c");
-    addButton("6", "#2c2c2c");
+    addButton("4", "black");
+    addButton("5", "black");
+    addButton("6", "black");
     addButton("-", "blue");
 
     // Row 4
-    addButton("1", "#2c2c2c");
-    addButton("2", "#2c2c2c");
-    addButton("3", "#2c2c2c");
+    addButton("1", "black");
+    addButton("2", "black");
+    addButton("3", "black");
     addButton("+", "blue");
 
     // Row 5
-    addButton("00", "#2c2c2c");
-    addButton("0",  "#2c2c2c");
-    addButton(".",  "#2c2c2c");
+    addButton("00", "black");
+    addButton("0",  "black");
+    addButton(".",  "black");
     addButton("=",  "green");
 }
 

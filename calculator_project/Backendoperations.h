@@ -1,6 +1,5 @@
 #ifndef BACKENDOPERATIONS_H
 #define BACKENDOPERATIONS_H
-
 #include <QObject>
 #include <QString>
 #include <QVariantList>
@@ -14,8 +13,14 @@ class BackendOperations : public QObject
 public:
     explicit BackendOperations(QObject *parent = nullptr);
 
-    QString displayText() const { return m_displayText; }
-    QVariantList buttons() const { return m_buttons; }
+    QString displayText() const
+    {
+        return m_displayText;
+    }
+    QVariantList buttons() const
+    {
+        return m_buttons;
+    }
 
     Q_INVOKABLE void handleButtonClick(const QString &text);
 

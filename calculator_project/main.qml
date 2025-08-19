@@ -6,7 +6,7 @@ ApplicationWindow {
     visible: true
     width: 360
     height: 560
-    title: "Calculator"
+    title: "Calculator project"
 
     Rectangle {
         anchors.fill: parent
@@ -21,8 +21,8 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 120
                 radius: 10
-                color: "#1e1e1e"
-                border.color: "#2a2a2a"
+                color: "black"
+                border.color: "black"
 
                 Text {
                     anchors.fill: parent
@@ -37,15 +37,15 @@ ApplicationWindow {
                 }
             }
 
-            // Keypad from backend only
+
             Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 radius: 10
-                color: "#181818"
-                border.color: "#262626"
+                color: "white"
+                border.color: "white"
 
-                GridLayout {
+                GridLayout{
                     id: grid
                     anchors.fill: parent
                     anchors.margins: 10
@@ -66,8 +66,9 @@ ApplicationWindow {
                             font.pixelSize: 20
                             text: modelData["text"]
 
-                            background: Rectangle {
-                                radius: 10
+                            background: Rectangle
+                            {
+                                radius: 0
                                 color: modelData["color"]
                             }
 
@@ -85,7 +86,10 @@ ApplicationWindow {
                         }
                     }
                 }
+
+
             }
         }
     }
 }
+
