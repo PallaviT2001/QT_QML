@@ -10,14 +10,13 @@ ApplicationWindow {
 
     Rectangle {
         anchors.fill: parent
-        color: "#121212"
+        color: "light gray"
 
         ColumnLayout {
             anchors.fill: parent
             anchors.margins: 12
             spacing: 12
 
-            // Display
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 120
@@ -38,7 +37,7 @@ ApplicationWindow {
                 }
             }
 
-            // Keypad
+            // Keypad from backend only
             Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
@@ -46,7 +45,6 @@ ApplicationWindow {
                 color: "#181818"
                 border.color: "#262626"
 
-                // 4 columns x 5 rows = 20 buttons, perfectly aligned
                 GridLayout {
                     id: grid
                     anchors.fill: parent
@@ -55,32 +53,24 @@ ApplicationWindow {
                     rowSpacing: 10
                     columns: 4
 
-                    // Compute uniform sizes
                     property real cellW: (width - (columns - 1) * columnSpacing) / columns
                     property int rows: 5
                     property real cellH: (height - (rows - 1) * rowSpacing) / rows
 
                     Repeater {
-                        model: [
-                            "AC", "%",  "←", "÷",
-                            "7",  "8",  "9", "×",
-                            "4",  "5",  "6", "-",
-                            "1",  "2",  "3", "+",
-                            "00", "0",  ".", "="
-                        ]
+                        model: backend.buttons
 
                         delegate: Button {
                             Layout.preferredWidth: grid.cellW
                             Layout.preferredHeight: grid.cellH
                             font.pixelSize: 20
-                            text: modelData
+                            text: modelData["text"]
+
                             background: Rectangle {
                                 radius: 10
-                                color: (text === "AC") ? "#ff8c00"
-                                      : (text === "=")  ? "green"
-                                      : (text === "+" || text === "-" || text === "×" || text === "÷" || text === "%") ? "blue"
-                                      : "#2c2c2c"
+                                color: modelData["color"]
                             }
+
                             contentItem: Text {
                                 text: parent.text
                                 color: "white"
@@ -90,6 +80,7 @@ ApplicationWindow {
                                 anchors.fill: parent
                                 anchors.margins: 2
                             }
+
                             onClicked: backend.handleButtonClick(text)
                         }
                     }
