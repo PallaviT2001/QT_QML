@@ -6,6 +6,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)
+find_package(Qt6 REQUIRED COMPONENTS Core)
 
 qt_add_executable(appphone_book_project
     main.cpp
@@ -14,7 +15,13 @@ qt_add_executable(appphone_book_project
 qt_add_qml_module(appphone_book_project
     URI phone_book_project
     VERSION 1.0
-    QML_FILES main.qml 
+    QML_FILES main.qml
+    SOURCES
+    QML_FILES
+    QML_FILES phonebookpage.qml
+    QML_FILES addcontactpage.qml
+    QML_FILES searchcontactpage.qml
+    QML_FILES contactlistpage.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -30,6 +37,7 @@ set_target_properties(appphone_book_project PROPERTIES
 
 target_link_libraries(appphone_book_project
     PRIVATE Qt6::Quick)
+target_link_libraries(appphone_book_project PRIVATE Qt6::Core)
 
 include(GNUInstallDirs)
 install(TARGETS appphone_book_project

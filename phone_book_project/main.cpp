@@ -1,11 +1,16 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
+//#include "PhoneBook.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+    //PhoneBook phoneBook;
+
+    //engine.rootContext()->setContextProperty("phoneBook", &phoneBook);
     const QUrl url(QStringLiteral("qrc:/phone_book_project/main.qml"));
     QObject::connect(
         &engine,
@@ -20,3 +25,5 @@ int main(int argc, char *argv[])
 
     return app.exec();
 }
+
+

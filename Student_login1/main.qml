@@ -2,14 +2,12 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-
 Window {
     id: mainWindow
     width: 550
     height: 1000
     visible: true
     title: qsTr("Registraction Aplication")
-
 
     Loader {
         id: pageLoader

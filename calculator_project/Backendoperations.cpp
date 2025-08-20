@@ -6,38 +6,37 @@
 BackendOperations::BackendOperations(QObject *parent)
     : QObject(parent), m_displayText("")
 {
-    auto addButton = [&](const QString &label, const QString &color) {
+    m_rows = 5;
+    m_columns = 4;
+
+    auto addButton = [&](const QString &label, const QString &color)
+    {
         QVariantMap btn;
         btn["text"] = label;
         btn["color"] = color;
         m_buttons.append(btn);
     };
 
-    // Row 1
     addButton("AC", "orange");
     addButton("%",  "blue");
     addButton("←",  "blue");
     addButton("÷",  "blue");
 
-    // Row 2
     addButton("7", "black");
     addButton("8", "black");
     addButton("9", "black");
     addButton("×", "blue");
 
-    // Row 3
     addButton("4", "black");
     addButton("5", "black");
     addButton("6", "black");
     addButton("-", "blue");
 
-    // Row 4
     addButton("1", "black");
     addButton("2", "black");
     addButton("3", "black");
     addButton("+", "blue");
 
-    // Row 5
     addButton("00", "black");
     addButton("0",  "black");
     addButton(".",  "black");
@@ -77,7 +76,6 @@ void BackendOperations::handleButtonClick(const QString &text)
 
     if (text.size() == 1 && isOperator(text.at(0))) {
         const QChar c = text.at(0);
-
         if (m_displayText.isEmpty()) {
             if (c == '-') {
                 m_displayText.append(c);
@@ -85,7 +83,6 @@ void BackendOperations::handleButtonClick(const QString &text)
             }
             return;
         }
-
         if (endsWithOperator(m_displayText)) {
             m_displayText.chop(1);
         }
@@ -97,7 +94,7 @@ void BackendOperations::handleButtonClick(const QString &text)
     if (text == ".") {
         int i = m_displayText.size() - 1;
         while (i >= 0 && !isOperator(m_displayText.at(i))) --i;
-        const QString currentToken = m_displayText.mid(i + 1);
+        QString currentToken = m_displayText.mid(i + 1);
         if (currentToken.contains('.'))
             return;
     }
@@ -123,10 +120,9 @@ void BackendOperations::calculateResult()
     if (result.isError()) {
         m_displayText = "Error";
     } else {
-        const double val = result.toNumber();
+        double val = result.toNumber();
         if (std::isfinite(val)) {
-            QString out = QString::number(val, 'g', 15);
-            m_displayText = out;
+            m_displayText = QString::number(val, 'g', 15);
         } else {
             m_displayText = "Error";
         }
