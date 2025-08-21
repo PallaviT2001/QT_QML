@@ -1,6 +1,5 @@
 #ifndef STUDENTDATAMODEL_H
 #define STUDENTDATAMODEL_H
-
 #include <QList>
 #include <QAbstractListModel>
 #include "Student.h"
