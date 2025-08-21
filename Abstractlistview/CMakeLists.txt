@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(phone_book_project VERSION 0.1 LANGUAGES CXX)
+project(Abstractlistview VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -9,40 +9,36 @@ find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 
-qt_add_executable(appphone_book_project
+qt_add_executable(appAbstractlistview
     main.cpp
 )
 
-qt_add_qml_module(appphone_book_project
-    URI phone_book_project
+qt_add_qml_module(appAbstractlistview
+    URI Abstractlistview
     VERSION 1.0
     QML_FILES main.qml
-    SOURCES
-    QML_FILES
-    QML_FILES phonebookpage.qml
-    QML_FILES addcontactpage.qml
-    QML_FILES searchcontactpage.qml
-    QML_FILES contactlistpage.qml
-    SOURCES Phonebookbackend.h Phonebookbackend.cpp
+    SOURCES contactmodel.h contactmodel.cpp
+    SOURCES Phonebook.h Phonebook.cpp
+    QML_FILES ShowList.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
-set_target_properties(appphone_book_project PROPERTIES
-#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appphone_book_project
+set_target_properties(appAbstractlistview PROPERTIES
+#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appAbstractlistview
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
 
-target_link_libraries(appphone_book_project
+target_link_libraries(appAbstractlistview
     PRIVATE Qt6::Quick)
-target_link_libraries(appphone_book_project PRIVATE Qt6::Core)
-target_link_libraries(appphone_book_project PRIVATE Qt6::Core)
+target_link_libraries(appAbstractlistview PRIVATE Qt6::Core)
+target_link_libraries(appAbstractlistview PRIVATE Qt6::Core)
 
 include(GNUInstallDirs)
-install(TARGETS appphone_book_project
+install(TARGETS appAbstractlistview
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})

@@ -1,6 +1,5 @@
 #ifndef STUDENT_H
 #define STUDENT_H
-
 #include <qobject.h>
 
 class Student: public QObject

@@ -1,17 +1,19 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-//#include "PhoneBook.h"
-
+#include "contactmodel.h"
 int main(int argc, char *argv[])
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#endif
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+    ContactModel myContactModel;
+    engine.rootContext()->setContextProperty("ContactModel",&myContactModel);
 
-    //PhoneBook phoneBook;
-    //engine.rootContext()->setContextProperty("phoneBook", &phoneBook);
-    const QUrl url(QStringLiteral("qrc:/phone_book_project/main.qml"));
+    const QUrl url(QStringLiteral("qrc:Abstractlistview/main.qml"));
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreated,
@@ -25,5 +27,3 @@ int main(int argc, char *argv[])
 
     return app.exec();
 }
-
-

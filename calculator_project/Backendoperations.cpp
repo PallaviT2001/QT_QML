@@ -22,24 +22,24 @@ BackendOperations::BackendOperations(QObject *parent)
     addButton("←",  "blue");
     addButton("÷",  "blue");
 
-    addButton("7", "black");
-    addButton("8", "black");
-    addButton("9", "black");
+    addButton("7", "pink");
+    addButton("8", "pink");
+    addButton("9", "pink");
     addButton("×", "blue");
 
-    addButton("4", "black");
-    addButton("5", "black");
-    addButton("6", "black");
+    addButton("4", "pink");
+    addButton("5", "pink");
+    addButton("6", "pink");
     addButton("-", "blue");
 
-    addButton("1", "black");
-    addButton("2", "black");
-    addButton("3", "black");
+    addButton("1", "pink");
+    addButton("2", "pink");
+    addButton("3", "pink");
     addButton("+", "blue");
 
-    addButton("00", "black");
-    addButton("0",  "black");
-    addButton(".",  "black");
+    addButton("00", "pink");
+    addButton("0",  "pink");
+    addButton(".",  "pink");
     addButton("=",  "green");
 }
 

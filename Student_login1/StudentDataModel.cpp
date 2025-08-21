@@ -19,13 +19,6 @@ bool StudentDataModel::addStudent(const QString &studentName, const QString &pho
 {
     qDebug()<<Q_FUNC_INFO;
 
-    // Student* newStudent = new Student(this);
-    // newStudent->setUserName("Darshan Gowda R");
-    // newStudent->setPhoneNumber("1234567899");
-    // newStudent->setFatherName("Ramesh N");
-    // newStudent->setEmail("darshangowda@gmail.com");
-    // newStudent->setPassword("Darshangowda@2002");
-    // newStudent->setConfirmPassword("Darshangowda@2002");
 
     if (studentName.isEmpty() || phoneNumber.isEmpty() || fatherName.isEmpty() || email.isEmpty() ||
         password.isEmpty() || confirmPassword.isEmpty()) {
