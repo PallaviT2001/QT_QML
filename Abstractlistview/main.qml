@@ -6,9 +6,9 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: "Phonebook"
+    title: "Phonebook Application"
 
-    Column {
+    Column{
         anchors.fill: parent
         spacing: 10
         padding: 10
