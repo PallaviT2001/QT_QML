@@ -11,17 +11,16 @@ public:
     ~ContactModel();
 
     enum ContactRoles {
-        ContactNameRole = Qt::UserRole + 1,
+        ContactNameRole =1,
         ContactNumberRole
     };
 
-    // Mandatory overrides
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
 
     Q_INVOKABLE void addContact(const QString &name, const QString &number);
-    Q_INVOKABLE void addNumberButtonClicked();   // Demo function
+    Q_INVOKABLE void addNumberButtonClicked();
     Q_INVOKABLE int getSize() const;
 
 private:
