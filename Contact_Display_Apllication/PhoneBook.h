@@ -1,15 +1,14 @@
 #ifndef PHONEBOOK_H
 #define PHONEBOOK_H
-#include <QObject>
+#include "ContactDataModel.h"
+#include <QDebug>
 
-class PhoneBook : public QObject
+class PhoneBook : public ContactDataModel
 {
     Q_OBJECT
 public:
     explicit PhoneBook(QObject *parent = nullptr);
-
-signals:
-
+    ~PhoneBook();
 };
 
-#endif // PHONEBOOK_H
+#endif
