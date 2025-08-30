@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 Rectangle {
-    id: phoneBookPage
+    id: callHistoryPage
     anchors.fill: parent
     color: "white"
 
@@ -12,38 +12,35 @@ Rectangle {
         padding: 10
 
         ListView {
-            id: phoneBookList
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: parent.width
-            height: parent.height - 100
+            id: callList
+            anchors.fill: parent
             spacing: 8
             clip: true
             model: contactModel
 
             delegate: Rectangle {
                 width: parent.width
-                height: 60
-                radius: 6
-                color: "#f0f0f0"
-                border.color: "gray"
+                height: 70
+                color: "#f9f9f9"
+                border.color: "#ddd"
 
                 Row {
                     anchors.centerIn: parent
                     spacing: 12
                     Text { text: name; font.bold: true }
-                    Text { text: number }
+                    Text { text: callTime; color: "gray" }
+                    Text {
+                        text: isIncoming ? "Incoming" : (isOutgoing ? "Outgoing" : "Missed")
+                        color: isIncoming ? "green" : (isOutgoing ? "blue" : "red")
+                    }
                 }
             }
         }
 
-        Row {
+        Button {
+            text: "Back"
             anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 20
-
-            Button {
-                text: "Back"
-                onClicked: pageLoader.source = "HomePage.qml"
-            }
+            onClicked: pageLoader.source = "HomePage.qml"
         }
     }
 }

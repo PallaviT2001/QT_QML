@@ -11,6 +11,6 @@ ApplicationWindow {
     Loader {
         id: pageLoader
         anchors.fill: parent
-        source: "HomePage.qml"
+        source: "HomePage.qml"   // load home page first
     }
 }

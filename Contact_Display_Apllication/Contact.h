@@ -6,35 +6,63 @@
 class Contact : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString contactName READ contactName WRITE setContactName NOTIFY contactChanged)
-    Q_PROPERTY(QString contactNumber READ contactNumber WRITE setContactNumber NOTIFY contactChanged)
-    Q_PROPERTY(QString contactImage READ contactImage WRITE setContactImage NOTIFY contactChanged)
+    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(QString number READ number WRITE setNumber NOTIFY numberChanged)
+    Q_PROPERTY(QString image READ image WRITE setImage NOTIFY imageChanged)
+    Q_PROPERTY(QString callTime READ callTime WRITE setCallTime NOTIFY callTimeChanged)
+    Q_PROPERTY(bool isIncoming READ isIncoming WRITE setIsIncoming NOTIFY isIncomingChanged)
+    Q_PROPERTY(bool isOutgoing READ isOutgoing WRITE setIsOutgoing NOTIFY isOutgoingChanged)
+    Q_PROPERTY(QString shortMessage READ shortMessage WRITE setShortMessage NOTIFY shortMessageChanged)
 
 public:
-    explicit Contact(QObject *parent = nullptr) : QObject(parent) {}
-    Contact(const QString &name, const QString &number, const QString &image, QObject *parent = nullptr)
-        : QObject(parent), m_contactName(name), m_contactNumber(number), m_contactImage(image) {}
-    QString contactName() const;
-    QString contactNumber() const;
-    QString contactImage() const;
-    void setContactName(const QString &name);
-    void setContactNumber(const QString &number);
-    void setContactImage(const QString &image);
+    // One flexible constructor (covers all cases with default values)
+    explicit Contact(const QString &name = QString(),
+                     const QString &number = QString(),
+                     const QString &image = QString(),
+                     const QString &callTime = QString(),
+                     bool isIncoming = false,
+                     bool isOutgoing = false,
+                     const QString &shortMessage = QString(),
+                     QObject *parent = nullptr);
+
+    // Getters
+    QString name() const;
+    QString number() const;
+    QString image() const;
+    QString callTime() const;
+    bool isIncoming() const;
+    bool isOutgoing() const;
+    QString shortMessage() const;
+
+public slots:
+    // Setters
+    void setName(const QString &name);
+    void setNumber(const QString &number);
+    void setImage(const QString &image);
+    void setCallTime(const QString &time);
+    void setIsIncoming(bool incoming);
+    void setIsOutgoing(bool outgoing);
+    void setShortMessage(const QString &msg);
 
 signals:
-    void contactChanged();
+    void nameChanged();
+    void numberChanged();
+    void imageChanged();
+    void callTimeChanged();
+    void isIncomingChanged();
+    void isOutgoingChanged();
+    void shortMessageChanged();
 
 private:
-    QString m_contactName;
-    QString m_contactNumber;
-    QString m_contactImage;
+    QString m_name;
+    QString m_number;
+    QString m_image;
+    QString m_callTime;
+    bool m_isIncoming = false;
+    bool m_isOutgoing = false;
+    QString m_shortMessage;
 };
 
-#endif
-
-
-
-
-
+#endif // CONTACT_H
 
 
