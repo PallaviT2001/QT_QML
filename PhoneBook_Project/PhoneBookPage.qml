@@ -18,20 +18,20 @@ Rectangle {
             height: parent.height - 100
             spacing: 8
             clip: true
-            model: contactModel
+            model: contactModel   // assume defined in C++
 
             delegate: Rectangle {
                 width: parent.width
                 height: 60
-                radius: 6
                 color: "#f0f0f0"
+                radius: 6
                 border.color: "gray"
 
                 Row {
                     anchors.centerIn: parent
                     spacing: 12
-                    Text { text: name; font.bold: true }
-                    Text { text: number }
+                    Text { text: contactName; font.bold: true }
+                    Text { text: contactNumber }
                 }
             }
         }
@@ -39,6 +39,11 @@ Rectangle {
         Row {
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 20
+
+            Button {
+                text: "Add Contact"
+                onClicked: pageLoader.source = "AddContactPage.qml"
+            }
 
             Button {
                 text: "Back"
