@@ -13,13 +13,11 @@ PhoneBook::~PhoneBook()
 
 Contact* PhoneBook::createContactData()
 {
-    // default contact for phonebook (will be overwritten if prototype provided)
     return new Contact(QString(), QString(), QString(), QString(), false, false, QString(), nullptr);
 }
 
 void PhoneBook::insertContactData(Contact *prototype)
 {
-    // Create a real object via factory function then copy prototype values if present
     Contact *c = createContactData();
     if (prototype) {
         c->setName(prototype->name());
@@ -29,9 +27,8 @@ void PhoneBook::insertContactData(Contact *prototype)
         c->setIsIncoming(prototype->isIncoming());
         c->setIsOutgoing(prototype->isOutgoing());
         c->setShortMessage(prototype->shortMessage());
-        delete prototype; // prototype used only to transfer data
+        delete prototype;
     }
-    // Now append to model (base handles parent and signals)
     ContactDataModel::insertContactData(c);
 }
 

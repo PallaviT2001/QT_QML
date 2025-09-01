@@ -1,6 +1,5 @@
 #ifndef WHATSAPP_H
 #define WHATSAPP_H
-
 #include "ContactDataModel.h"
 #include <QDebug>
 

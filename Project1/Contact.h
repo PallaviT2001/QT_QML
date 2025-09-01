@@ -1,6 +1,5 @@
 #ifndef CONTACT_H
 #define CONTACT_H
-
 #include <QObject>
 #include <QString>
 
@@ -61,4 +60,4 @@ private:
     QString m_shortMessage;
 };
 
-#endif // CONTACT_H
+#endif

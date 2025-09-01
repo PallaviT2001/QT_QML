@@ -1,6 +1,5 @@
 #ifndef CONTACTDATAMODEL_H
 #define CONTACTDATAMODEL_H
-
 #include <QAbstractListModel>
 #include "Contact.h"
 
@@ -25,9 +24,8 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     QHash<int, QByteArray> roleNames() const override;
 
-    // The required functions you asked for
-    virtual Contact* createContactData() = 0; // must be implemented by derived classes
-    virtual void insertContactData(Contact *prototype); // prototype may be nullptr
+    virtual Contact* createContactData() = 0;
+    virtual void insertContactData(Contact *prototype);
     virtual Contact* getContactData(int index) const;
     virtual int count() const;
 
@@ -35,4 +33,4 @@ protected:
     QList<Contact*> m_contacts;
 };
 
-#endif // CONTACTDATAMODEL_H
+#endif

@@ -8,7 +8,6 @@ ContactDataModel::ContactDataModel(QObject *parent)
 
 ContactDataModel::~ContactDataModel()
 {
-    // children (Contact) are QObject children if parent set, but be safe:
     qDeleteAll(m_contacts);
     m_contacts.clear();
 }
@@ -52,12 +51,11 @@ QHash<int, QByteArray> ContactDataModel::roleNames() const
     return roles;
 }
 
-// Default insertion simply appends a contact (expects ownership transfer)
+
 void ContactDataModel::insertContactData(Contact *contact)
 {
     if (!contact) return;
     beginInsertRows(QModelIndex(), m_contacts.size(), m_contacts.size());
-    // take ownership by setting parent
     contact->setParent(this);
     m_contacts.append(contact);
     endInsertRows();

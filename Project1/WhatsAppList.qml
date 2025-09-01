@@ -28,7 +28,6 @@ Rectangle {
                     anchors.margins: 10
                     spacing: 12
 
-                    // Avatar circle (initial)
                     Rectangle {
                         width: 50
                         height: 50
@@ -45,7 +44,6 @@ Rectangle {
                         }
                     }
 
-                    // Name + Message
                     ColumnLayout {
                         Layout.fillWidth: true
                         spacing: 4
@@ -80,7 +78,7 @@ Rectangle {
                     }
                 }
 
-                Rectangle { // Divider line
+                Rectangle {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     anchors.bottom: parent.bottom
