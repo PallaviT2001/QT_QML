@@ -1,5 +1,6 @@
 #ifndef CONTACT_H
 #define CONTACT_H
+
 #include <QObject>
 #include <QString>
 
@@ -15,7 +16,6 @@ class Contact : public QObject
     Q_PROPERTY(QString shortMessage READ shortMessage WRITE setShortMessage NOTIFY shortMessageChanged)
 
 public:
-    // One flexible constructor (covers all cases with default values)
     explicit Contact(const QString &name = QString(),
                      const QString &number = QString(),
                      const QString &image = QString(),
@@ -25,7 +25,6 @@ public:
                      const QString &shortMessage = QString(),
                      QObject *parent = nullptr);
 
-    // Getters
     QString name() const;
     QString number() const;
     QString image() const;
@@ -35,7 +34,6 @@ public:
     QString shortMessage() const;
 
 public slots:
-    // Setters
     void setName(const QString &name);
     void setNumber(const QString &number);
     void setImage(const QString &image);
@@ -58,11 +56,9 @@ private:
     QString m_number;
     QString m_image;
     QString m_callTime;
-    bool m_isIncoming = false;
-    bool m_isOutgoing = false;
+    bool m_isIncoming;
+    bool m_isOutgoing;
     QString m_shortMessage;
 };
 
 #endif // CONTACT_H
-
-

@@ -14,23 +14,30 @@ Rectangle {
             text: "Phone Book"
             width: homePage.width / 2
             height: 50
-            onClicked: pageLoader.source = "PhoneBookPage.qml"
+            onClicked: {
+                modelManager.createPhoneBook();
+                pageLoader.source = "PhoneBookPage.qml";
+            }
         }
 
         Button {
             text: "Call History"
             width: homePage.width / 2
             height: 50
-            onClicked: pageLoader.source = "CallHistory.qml"
+            onClicked: {
+                modelManager.createCallHistory();
+                pageLoader.source = "CallHistoryPage.qml";
+            }
         }
 
         Button {
             text: "WhatsApp"
             width: homePage.width / 2
             height: 50
-            onClicked: pageLoader.source = "WhatsAppList.qml"
+            onClicked: {
+                modelManager.createWhatsApp();
+                pageLoader.source = "WhatsAppList.qml";
+            }
         }
     }
 }
-
-

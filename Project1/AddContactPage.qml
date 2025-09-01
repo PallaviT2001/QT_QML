@@ -15,9 +15,8 @@ Rectangle {
             width: addContactPage.width / 2
             height: 50
             placeholderText: "Enter Name"
-            placeholderTextColor: "White"
             font.pixelSize: 18
-            color: "white"
+            color: "black"
         }
 
         TextField {
@@ -25,9 +24,8 @@ Rectangle {
             width: addContactPage.width / 2
             height: 50
             placeholderText: "Enter Number"
-            placeholderTextColor: "White"
             font.pixelSize: 18
-            color: "white"
+            color: "black"
         }
 
         TextField {
@@ -35,33 +33,27 @@ Rectangle {
             placeholderText: "Image URL (optional)"
             width: addContactPage.width / 2
             height: 50
-            placeholderTextColor: "White"
             font.pixelSize: 18
-            color: "white"
+            color: "black"
         }
 
-        Row{
+        Row {
             spacing: 40
 
             Button {
                 text: "Save"
-
-                onClicked:
-                {
-                    if (nameField.text !== "" && numberField.text !== "")
-                    {
-                        contactModel.addContact(nameField.text,numberField.text,imageField.text)
+                onClicked: {
+                    if (nameField.text !== "" && numberField.text !== "") {
+                        // add via manager (creates a Contact and inserts into currently active model)
+                        modelManager.addContact(nameField.text, numberField.text, imageField.text, "", false, false, "");
                         pageLoader.source = "PhoneBookPage.qml"
-                    }
-                    else
-                    {
+                    } else {
                         console.log("Please enter name and number")
                     }
                 }
             }
 
-            Button
-            {
+            Button {
                 text: "Back"
                 onClicked: pageLoader.source = "PhoneBookPage.qml"
             }

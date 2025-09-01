@@ -2,9 +2,9 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 Rectangle {
-    id: phoneBookPage
+    id: callHistoryPage
     anchors.fill: parent
-    color: "white"
+    color: "lightgray"
 
     Column {
         anchors.fill: parent
@@ -12,25 +12,29 @@ Rectangle {
         padding: 10
 
         ListView {
-            id: phoneBookList
+            id: callHistoryList
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width
             height: parent.height - 100
             spacing: 8
             clip: true
-            model: contactModel
+            model: modelManager.contactModel
 
             delegate: Rectangle {
                 width: parent.width
                 height: 60
                 radius: 6
-                color: "#f0f0f0"
+                color: "#ffffff"
                 border.color: "gray"
 
                 Row {
                     anchors.centerIn: parent
                     spacing: 12
-                    Text { text: name; font.bold: true }
+                    Column {
+                        Text { text: name; font.bold: true }
+                        Text { text: callTime; font.pixelSize: 12; color: "gray" }
+                    }
+                    Item { width: 20 }
                     Text { text: number }
                 }
             }
