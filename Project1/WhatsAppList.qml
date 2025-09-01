@@ -32,13 +32,13 @@ Rectangle {
                         width: 50
                         height: 50
                         radius: 25
-                        color: "#25D366"
-                        Layout.alignment: Qt.AlignVCenter
+                        color: "green"
+                        anchors.verticalCenter: parent.verticalCenter
 
                         Text {
                             anchors.centerIn: parent
                             text: (name && name.length > 0) ? name.charAt(0).toUpperCase() : ""
-                            color: "white"
+                            color: "pink"
                             font.bold: true
                             font.pixelSize: 18
                         }
@@ -83,7 +83,7 @@ Rectangle {
                     anchors.right: parent.right
                     anchors.bottom: parent.bottom
                     height: 1
-                    color: "#e0e0e0"
+                    color: "black"
                 }
             }
         }

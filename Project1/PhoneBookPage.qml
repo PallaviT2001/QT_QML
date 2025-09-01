@@ -48,12 +48,14 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 20
 
-            Button {
+            Button
+            {
                 text: "+Add"
                 onClicked: pageLoader.source = "AddContactPage.qml"
             }
 
-            Button {
+            Button
+            {
                 text: "Back"
                 onClicked: pageLoader.source = "HomePage.qml"
             }

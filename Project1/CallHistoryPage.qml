@@ -20,22 +20,36 @@ Rectangle {
             clip: true
             model: modelManager.contactModel
 
-            delegate: Rectangle {
+            delegate: Rectangle
+            {
                 width: parent.width
                 height: 60
-                radius: 6
+                radius: 180
                 color: "lightblue"
                 border.color: "gray"
 
-                Row {
+                Row
+                {
                     anchors.centerIn: parent
                     spacing: 12
-                    Column {
-                        Text { text: name; font.bold: true }
-                        Text { text: callTime; font.pixelSize: 12; color: "gray" }
+                    Column
+                    {
+                        Text
+                        {
+                            text: name;
+                            font.bold: true
+                        }
+                        Text
+                        {
+                            text: callTime;
+                            font.pixelSize: 12;
+                            color: "gray"
+                        }
                     }
-                    Item { width: 20 }
-                    Text { text: number }
+                    Text
+                    {
+                        text: number
+                    }
                 }
             }
         }
@@ -44,7 +58,8 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 20
 
-            Button {
+            Button
+            {
                 text: "Back"
                 onClicked: pageLoader.source = "HomePage.qml"
             }

@@ -8,7 +8,7 @@ class ContactDataModel : public QAbstractListModel
     Q_OBJECT
 public:
     enum ContactRoles {
-        NameRole = Qt::UserRole + 1,
+        NameRole =1,
         NumberRole,
         ImageRole,
         CallTimeRole,
