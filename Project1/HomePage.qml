@@ -15,14 +15,16 @@ Rectangle {
             width: homePage.width / 2
             height: 50
 
-            background: Rectangle{
+            background: Rectangle
+            {
                 color: "blue"
                 anchors.fill: parent
                 border.color: "Black"
                 border.width: 2
                 radius: 180
             }
-            onClicked: {
+            onClicked:
+            {
                 modelManager.createPhoneBook();
                 pageLoader.source = "PhoneBookPage.qml";
             }
@@ -32,32 +34,37 @@ Rectangle {
             text: "Call History"
             width: homePage.width / 2
             height: 50
-            background: Rectangle{
+            background: Rectangle
+            {
                 color: "red"
                 anchors.fill: parent
                 border.color: "Black"
                 border.width: 2
                 radius: 180
             }
-            onClicked: {
+            onClicked:
+            {
                 modelManager.createCallHistory();
                 pageLoader.source = "CallHistoryPage.qml";
             }
         }
 
-        Button {
+        Button
+        {
             text: "WhatsApp"
             width: homePage.width / 2
             height: 50
 
-            background: Rectangle{
+            background: Rectangle
+            {
                 color: "green"
                 anchors.fill: parent
                 border.color: "Black"
                 border.width: 2
                 radius: 180
             }
-            onClicked: {
+            onClicked:
+            {
                 modelManager.createWhatsApp();
                 pageLoader.source = "WhatsAppList.qml";
             }

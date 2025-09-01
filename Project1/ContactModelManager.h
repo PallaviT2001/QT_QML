@@ -29,4 +29,4 @@ private:
     void setModel(ContactDataModel* model);
 };
 
-#endif // CONTACTMODELMANAGER_H
+#endif
