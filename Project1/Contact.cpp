@@ -16,9 +16,9 @@ Contact::Contact(const QString &name,
     m_isIncoming(isIncoming),
     m_isOutgoing(isOutgoing),
     m_shortMessage(shortMessage)
-{}
+{
+}
 
-// Getters
 QString Contact::name() const { return m_name; }
 QString Contact::number() const { return m_number; }
 QString Contact::image() const { return m_image; }
@@ -27,7 +27,6 @@ bool Contact::isIncoming() const { return m_isIncoming; }
 bool Contact::isOutgoing() const { return m_isOutgoing; }
 QString Contact::shortMessage() const { return m_shortMessage; }
 
-// Setters
 void Contact::setName(const QString &name) {
     if (m_name != name) { m_name = name; emit nameChanged(); }
 }

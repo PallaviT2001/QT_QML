@@ -1,101 +1,81 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
 
-Page {
+Rectangle {
     id: whatsappPage
     anchors.fill: parent
+    color: "white"
 
-    ColumnLayout {
+    Column {
         anchors.fill: parent
         spacing: 0
 
         ListView {
             id: whatsappList
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+            anchors.fill: parent
             clip: true
-            model: contactModel
-
+            model: modelManager.contactModel
             delegate: Rectangle {
                 width: whatsappList.width
                 height: 72
                 color: "white"
 
-                RowLayout {
+                Row {
                     anchors.fill: parent
                     anchors.margins: 10
                     spacing: 12
 
-                    // Avatar (WhatsApp green circle)
+                    // Avatar circle (initial)
                     Rectangle {
                         width: 48
                         height: 48
                         radius: 24
                         color: "#25D366"
-                        Layout.alignment: Qt.AlignVCenter
-                        Text {
+                        Row {
                             anchors.centerIn: parent
-                            text: (name && name.length > 0) ? name.charAt(0).toUpperCase() : ""
-                            color: "white"
-                            font.bold: true
-                            font.pixelSize: 18
+                            Text {
+                                text: (name && name.length > 0) ? name.charAt(0).toUpperCase() : ""
+                                color: "white"
+                                font.bold: true
+                                font.pixelSize: 18
+                            }
                         }
                     }
 
-                    // Middle: name + last message (takes remaining width)
-                    ColumnLayout {
-                        Layout.fillWidth: true
+                    Column {
+                        width: whatsappList.width * 0.6
                         spacing: 4
-
-                        // Top row: name (left) and time (right)
-                        RowLayout {
-                            Layout.fillWidth: true
-
+                        Row {
                             Text {
                                 text: name
                                 font.pixelSize: 16
                                 font.bold: true
                                 elide: Text.ElideRight
-                                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                                // ensure the name does not push the time out
-                                Layout.preferredWidth: whatsappList.width * 0.55
+                                width: whatsappList.width * 0.55
                             }
-
                             Text {
                                 text: callTime
                                 font.pixelSize: 12
                                 color: "gray"
-                                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                anchors.right: parent.right
                             }
                         }
-
-                        // Second line: last message (single line, elide if long)
                         Text {
                             text: shortMessage
                             font.pixelSize: 13
                             color: "gray"
                             elide: Text.ElideRight
                             wrapMode: Text.NoWrap
-                            Layout.fillWidth: true
+                            width: whatsappList.width * 0.7
                         }
                     }
-                }
-
-                // Separator line
-                Rectangle {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    anchors.bottom: parent.bottom
-                    height: 1
-                    color: "#e0e0e0"
                 }
             }
         }
 
         Button {
             text: "Back"
-            Layout.alignment: Qt.AlignHCenter
+            anchors.horizontalCenter: parent.horizontalCenter
             onClicked: pageLoader.source = "HomePage.qml"
         }
     }
