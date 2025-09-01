@@ -16,7 +16,7 @@ Rectangle {
             height: 50
             placeholderText: "Enter Name"
             font.pixelSize: 18
-            color: "black"
+            color: "white"
         }
 
         TextField {
@@ -25,7 +25,7 @@ Rectangle {
             height: 50
             placeholderText: "Enter Number"
             font.pixelSize: 18
-            color: "black"
+            color: "white"
         }
 
         TextField {
@@ -34,7 +34,7 @@ Rectangle {
             width: addContactPage.width / 2
             height: 50
             font.pixelSize: 18
-            color: "black"
+            color: "white"
         }
 
         Row {
@@ -42,11 +42,15 @@ Rectangle {
 
             Button {
                 text: "Save"
-                onClicked: {
-                    if (nameField.text !== "" && numberField.text !== "") {
+                onClicked:
+                {
+                    if (nameField.text !== "" && numberField.text !== "")
+                    {
                         modelManager.addContact(nameField.text, numberField.text, imageField.text, "", false, false, "");
                         pageLoader.source = "PhoneBookPage.qml"
-                    } else {
+                    }
+                    else
+                    {
                         console.log("Please enter name and number")
                     }
                 }

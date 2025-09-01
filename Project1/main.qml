@@ -8,7 +8,8 @@ ApplicationWindow {
     visible: true
     title: "Contact Application"
 
-    Loader {
+    Loader
+    {
         id: pageLoader
         anchors.fill: parent
         source: "HomePage.qml"
