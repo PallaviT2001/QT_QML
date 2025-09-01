@@ -1,6 +1,5 @@
 #ifndef CONTACTMODELMANAGER_H
 #define CONTACTMODELMANAGER_H
-
 #include <QObject>
 #include "ContactDataModel.h"
 
@@ -16,7 +15,6 @@ public:
     Q_INVOKABLE void createCallHistory();
     Q_INVOKABLE void createWhatsApp();
 
-    // QML calls this to add a new contact to the current model
     Q_INVOKABLE void addContact(const QString &name, const QString &number, const QString &image,
                                 const QString &callTime = QString(), bool isIncoming = false,
                                 bool isOutgoing = false, const QString &shortMessage = QString());

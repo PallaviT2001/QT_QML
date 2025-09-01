@@ -1,6 +1,5 @@
 #ifndef CALLHISTORY_H
 #define CALLHISTORY_H
-
 #include "ContactDataModel.h"
 #include <QDebug>
 
@@ -17,4 +16,4 @@ public:
     int count() const override;
 };
 
-#endif // CALLHISTORY_H
+#endif

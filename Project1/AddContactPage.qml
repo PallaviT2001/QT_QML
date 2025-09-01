@@ -44,7 +44,6 @@ Rectangle {
                 text: "Save"
                 onClicked: {
                     if (nameField.text !== "" && numberField.text !== "") {
-                        // add via manager (creates a Contact and inserts into currently active model)
                         modelManager.addContact(nameField.text, numberField.text, imageField.text, "", false, false, "");
                         pageLoader.source = "PhoneBookPage.qml"
                     } else {
