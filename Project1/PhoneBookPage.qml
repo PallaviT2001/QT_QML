@@ -15,7 +15,7 @@ Rectangle {
             id: phoneBookList
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width
-            height: parent.height - 100
+            height: parent.height-100
             spacing: 8
             clip: true
             model: modelManager.contactModel
@@ -23,15 +23,23 @@ Rectangle {
             delegate: Rectangle {
                 width: parent.width
                 height: 60
-                radius: 6
-                color: "#f0f0f0"
-                border.color: "gray"
+                radius: 180
+                color: "pink"
+                border.color: "black"
 
-                Row {
+                Row
+                {
                     anchors.centerIn: parent
                     spacing: 12
-                    Text { text: name; font.bold: true }
-                    Text { text: number }
+                    Text
+                    {
+                        text: name;
+                        font.bold: true
+                    }
+                    Text
+                    {
+                        text: number
+                    }
                 }
             }
         }
@@ -41,7 +49,7 @@ Rectangle {
             spacing: 20
 
             Button {
-                text: "Add"
+                text: "+Add"
                 onClicked: pageLoader.source = "AddContactPage.qml"
             }
 

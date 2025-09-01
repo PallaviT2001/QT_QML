@@ -4,7 +4,7 @@ import QtQuick.Controls 2.15
 Rectangle {
     id: callHistoryPage
     anchors.fill: parent
-    color: "lightgray"
+    color: "white"
 
     Column {
         anchors.fill: parent
@@ -24,7 +24,7 @@ Rectangle {
                 width: parent.width
                 height: 60
                 radius: 6
-                color: "#ffffff"
+                color: "lightblue"
                 border.color: "gray"
 
                 Row {
