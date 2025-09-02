@@ -1,14 +1,14 @@
-#ifndef CALLHISTORY_H
-#define CALLHISTORY_H
+#ifndef PHONEBOOK_H
+#define PHONEBOOK_H
 #include "ContactDataModel.h"
 #include <QDebug>
 
-class CallHistory : public ContactDataModel
+class PhoneBook : public ContactDataModel
 {
     Q_OBJECT
 public:
-    explicit CallHistory(QObject *parent = nullptr);
-    ~CallHistory();
+    explicit PhoneBook(QObject *parent = nullptr);
+    ~PhoneBook();
 
     Contact* createContactData() override;
     void insertContactData(Contact *prototype) override;
@@ -16,7 +16,4 @@ public:
     int count() const override;
 };
 
-#endif
-
-
-
+#endif // PHONEBOOK_H

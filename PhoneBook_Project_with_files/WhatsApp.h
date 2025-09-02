@@ -1,14 +1,14 @@
-#ifndef CALLHISTORY_H
-#define CALLHISTORY_H
+#ifndef WHATSAPP_H
+#define WHATSAPP_H
 #include "ContactDataModel.h"
 #include <QDebug>
 
-class CallHistory : public ContactDataModel
+class WhatsApp : public ContactDataModel
 {
     Q_OBJECT
 public:
-    explicit CallHistory(QObject *parent = nullptr);
-    ~CallHistory();
+    explicit WhatsApp(QObject *parent = nullptr);
+    ~WhatsApp();
 
     Contact* createContactData() override;
     void insertContactData(Contact *prototype) override;
@@ -16,7 +16,4 @@ public:
     int count() const override;
 };
 
-#endif
-
-
-
+#endif // WHATSAPP_H
