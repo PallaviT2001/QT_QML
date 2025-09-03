@@ -31,6 +31,7 @@ qt_add_qml_module(appPhoneBook_Project_with_files
     QML_FILES HomePage.qml
     SOURCES CsvLoader.h CsvLoader.cpp
     SOURCES ContactModelManager.h ContactModelManager.cpp
+    RESOURCES test.qrc
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
