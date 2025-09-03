@@ -5,7 +5,8 @@
 #include <QList>
 #include "Contact.h"
 
-namespace CsvLoader {
+namespace CsvLoader
+{
 QList<Contact*> loadContacts(const QString &filePath, QObject *parent = nullptr);
 }
 
