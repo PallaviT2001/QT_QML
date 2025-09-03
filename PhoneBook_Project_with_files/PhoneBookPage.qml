@@ -1,64 +1,77 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
 
 Rectangle {
     id: phoneBookPage
     anchors.fill: parent
     color: "white"
 
-    Column {
+    ColumnLayout {
         anchors.fill: parent
-        spacing: 10
-        padding: 10
+        spacing: 0
 
         ListView {
             id: phoneBookList
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: parent.width
-            height: parent.height-100
-            spacing: 8
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             clip: true
             model: modelManager.contactModel
+            spacing: 6
 
-            delegate: Rectangle {
-                width: parent.width
-                height: 60
-                radius: 180
-                color: "pink"
-                border.color: "black"
+            delegate: Item {
+                width: phoneBookList.width
+                height: 70
 
-                Row
-                {
-                    anchors.centerIn: parent
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.margins: 10
                     spacing: 12
-                    Text
-                    {
-                        text: name;
-                        font.bold: true
+
+                    Rectangle {
+                        width: 50
+                        height: 50
+                        radius: 25
+                        color: "orange"
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        Text {
+                            anchors.centerIn: parent
+                            text: (name && name.length > 0) ? name.charAt(0).toUpperCase() : ""
+                            color: "blue"
+                            font.bold: true
+                            font.pixelSize: 18
+                        }
                     }
-                    Text
-                    {
-                        text: number
+
+                    Column {
+                        spacing: 4
+                        Text {
+                            text: name
+                            font.bold: true
+                        }
+                        Text {
+                            text: number
+                        }
                     }
                 }
+
+                Image {
+                    source: "Images/PhoneBookCall.png"
+                    width: 50
+                    height: 50
+                    anchors.top: parent.top
+                    anchors.right: parent.right
+                    anchors.margins: 8
+                    fillMode: Image.PreserveAspectFit
+                }
+
             }
         }
-
-        Row {
-            anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 20
-
-            Button
-            {
-                text: "+Add"
-                onClicked: pageLoader.source = "AddContactPage.qml"
-            }
-
-            Button
-            {
-                text: "Back"
-                onClicked: pageLoader.source = "HomePage.qml"
-            }
+        Button {
+            text: "Back"
+            Layout.alignment: Qt.AlignHCenter
+            onClicked: pageLoader.source = "HomePage.qml"
         }
     }
 }
