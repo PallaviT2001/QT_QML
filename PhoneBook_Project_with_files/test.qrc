@@ -1,1 +1,6 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/">
+        <file>Contactcallpage.qml</file>
+        <file>Contactcall.qml</file>
+    </qresource>
+</RCC>
