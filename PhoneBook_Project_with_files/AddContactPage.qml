@@ -129,8 +129,10 @@ Rectangle {
         title: "Choose Contact Image"
         fileMode: FileDialog.OpenFile
         nameFilters: ["Images (*.png *.jpg *.jpeg *.bmp *.gif)", "All files (*)"]
-        onAccepted: {
+        onAccepted:
+        {
             imagePath = fileDialog.file.toString().replace("file://", "")
         }
     }
+
 }
