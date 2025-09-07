@@ -92,4 +92,3 @@ void ContactModelManager::updateContact(int index, const QString &name, const QS
     if (!m_contactModel) return;
     m_contactModel->updateAt(index, name, number, image);
 }
-
