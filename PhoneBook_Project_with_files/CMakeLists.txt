@@ -34,9 +34,11 @@ qt_add_qml_module(appPhoneBook_Project_with_files
     RESOURCES
     RESOURCES Images/PhoneBook.png
     RESOURCES Images/PhoneBookCall.png
-    QML_FILES ContactCall.qml
+    QML_FILES
     RESOURCES Images/Callcutimage.png
     QML_FILES
+    QML_FILES
+    QML_FILES ContactCall.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
