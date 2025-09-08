@@ -97,4 +97,3 @@ void ContactDataModel::updateAt(int index, const QString &name, const QString &n
         emit dataChanged(modelIdx, modelIdx, { NameRole, NumberRole, ImageRole });
     }
 }
-
