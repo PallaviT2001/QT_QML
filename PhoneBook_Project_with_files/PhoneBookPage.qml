@@ -23,23 +23,22 @@ Rectangle {
             anchors.margins: 5
             placeholderText: "Search contact"
             font.pixelSize: 16
-            color:"black"
+            color: "black"
 
-            background:Rectangle
-            {
-                radius:2
-                border.color:"gray"
-                color:transparent
+            background: Rectangle {
+                radius: 2
+                border.color: "gray"
+                color: "transparent"
             }
         }
     }
 
-        ListView {
+    ListView {
         id: phoneBookList
         anchors.top: searchbar.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.bottom: backButton.top   // stop above the button
+        anchors.bottom: backButton.top
         anchors.margins: 10
         clip: true
         spacing: 6
@@ -107,6 +106,7 @@ Rectangle {
                     pageLoader.source = "ContactCall.qml"
                     pageLoader.item.contactName = name
                     pageLoader.item.contactNumber = number
+                    pageLoader.item.contactImage = image
                 }
             }
         }

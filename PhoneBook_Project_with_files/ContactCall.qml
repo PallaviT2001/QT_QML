@@ -8,6 +8,7 @@ Rectangle {
 
     property string contactName: ""
     property string contactNumber: ""
+    property string contactImage: ""
 
     Column {
         anchors.centerIn: parent
@@ -20,12 +21,28 @@ Rectangle {
             color: "orange"
             anchors.horizontalCenter: parent.horizontalCenter
 
-            Text {
-                anchors.centerIn: parent
-                text: (contactName && contactName.length > 0) ? contactName.charAt(0).toUpperCase() : ""
-                color: "blue"
-                font.bold: true
-                font.pixelSize: 28
+            Item {
+                anchors.fill: parent
+
+                Image {
+                    id: bigImage
+                    anchors.fill: parent
+                    anchors.margins: 10
+                    source: contactImage
+                    fillMode: Image.PreserveAspectFit
+                    visible: contactImage !== ""
+                    clip: true
+                }
+
+                Text {
+                    anchors.centerIn: parent
+                    text: (contactImage === "" && contactName && contactName.length > 0)
+                          ? contactName.charAt(0).toUpperCase() : ""
+                    color: "blue"
+                    font.bold: true
+                    font.pixelSize: 28
+                    visible: contactImage === ""
+                }
             }
         }
 
@@ -76,7 +93,8 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    pageLoader.source = "HomePage.qml"
+                    modelManager.addCallHistoryEntry(contactName, contactNumber, contactImage, false, true, "")
+                    pageLoader.source = "CallHistoryPage.qml"
                 }
             }
         }

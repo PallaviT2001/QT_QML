@@ -10,4 +10,4 @@ namespace CsvLoader
 QList<Contact*> loadContacts(const QString &filePath, QObject *parent = nullptr);
 }
 
-#endif // CSVLOADER_H
+#endif
