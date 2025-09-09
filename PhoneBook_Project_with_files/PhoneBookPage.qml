@@ -22,8 +22,8 @@ Rectangle {
             anchors.fill: parent
             anchors.margins: 5
             placeholderText: "Search contact"
-            font.pixelSize: 16
-            color: "black"
+            font.pixelSize: 20
+            color: "white"
 
             background: Rectangle {
                 radius: 2
