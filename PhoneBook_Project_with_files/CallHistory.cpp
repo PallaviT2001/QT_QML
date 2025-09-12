@@ -16,21 +16,38 @@ Contact* CallHistory::createContactData()
     return new Contact(QString(), QString(), QString(), QString(), false, false, QString(), nullptr);
 }
 
-void CallHistory::insertContactData(Contact *prototype)
+/*void CallHistory::insertContactData(Contact *cobj)
 {
     Contact *c = createContactData();
-    if (prototype) {
-        c->setName(prototype->name());
-        c->setNumber(prototype->number());
-        c->setImage(prototype->image());
-        c->setCallTime(prototype->callTime());
-        c->setIsIncoming(prototype->isIncoming());
-        c->setIsOutgoing(prototype->isOutgoing());
-        c->setShortMessage(prototype->shortMessage());
-        delete prototype;
+    if (cobj) {
+        c->setName(cobj->name());
+        c->setNumber(cobj->number());
+        c->setImage(cobj->image());
+        c->setCallTime(cobj->callTime());
+        c->setIsIncoming(cobj->isIncoming());
+        c->setIsOutgoing(cobj->isOutgoing());
+        c->setShortMessage(cobj->shortMessage());
+        delete cobj;
     }
     ContactDataModel::insertContactData(c);
+}*/
+
+void CallHistory::insertContactData(Contact *cobj)
+{
+    if (!cobj) return;
+
+    beginInsertRows(QModelIndex(), m_contacts.size(), m_contacts.size());
+
+    Contact* newContact = new Contact(cobj->name(),cobj->number(),cobj->image(),cobj->callTime(),cobj->isIncoming(),
+        cobj->isOutgoing(),cobj->shortMessage(),this);
+
+    m_contacts.append(newContact);
+
+    endInsertRows();
+
+    delete cobj;
 }
+
 
 Contact* CallHistory::getContactData(int index) const
 {

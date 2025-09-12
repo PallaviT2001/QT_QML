@@ -11,7 +11,6 @@ Window {
         anchors.centerIn: parent
         spacing: 20
 
-
         Button {
             text: "Button1"
             onClicked:

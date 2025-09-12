@@ -1,20 +1,21 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
 
 Rectangle {
     id: whatsappPage
     anchors.fill: parent
     color: "white"
 
-    ColumnLayout {
+    Column {
         anchors.fill: parent
         spacing: 0
 
         ListView {
             id: whatsappList
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.bottom: backButton.top
             clip: true
             model: modelManager.contactModel
             spacing: 6
@@ -23,7 +24,7 @@ Rectangle {
                 width: whatsappList.width
                 height: 70
 
-                RowLayout {
+                Row {
                     anchors.fill: parent
                     anchors.margins: 10
                     spacing: 12
@@ -44,12 +45,14 @@ Rectangle {
                         }
                     }
 
-                    ColumnLayout {
-                        Layout.fillWidth: true
+                    Column {
+                        anchors.verticalCenter: parent.verticalCenter
                         spacing: 4
+                        width: parent.width - 70
 
-                        RowLayout {
-                            Layout.fillWidth: true
+                        Row {
+                            width: parent.width
+                            spacing: 8
 
                             Text {
                                 text: name
@@ -57,10 +60,11 @@ Rectangle {
                                 font.bold: true
                                 color: "black"
                                 elide: Text.ElideRight
-                                Layout.fillWidth: true
+                                width: parent.width - callTimeText.width - 10
                             }
 
                             Text {
+                                id: callTimeText
                                 text: callTime
                                 font.pixelSize: 12
                                 color: "gray"
@@ -73,7 +77,7 @@ Rectangle {
                             font.pixelSize: 14
                             color: "gray"
                             elide: Text.ElideRight
-                            Layout.fillWidth: true
+                            width: parent.width
                         }
                     }
                 }
@@ -89,10 +93,14 @@ Rectangle {
         }
 
         Button {
+            id: backButton
             text: "Back"
-            Layout.alignment: Qt.AlignHCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 10
             onClicked: pageLoader.source = "HomePage.qml"
         }
     }
 }
+
 
