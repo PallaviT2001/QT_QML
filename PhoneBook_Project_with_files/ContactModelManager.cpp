@@ -96,7 +96,8 @@ void ContactModelManager::addCallHistoryEntry(const QString &name,
                                               bool isOutgoing,
                                               const QString &shortMessage)
 {
-    if (!m_callHistory) {
+    if (!m_callHistory)
+    {
         m_callHistory = new CallHistory(this);
         QList<Contact*> contacts = CsvLoader::loadContacts("callhistory.csv", m_callHistory);
         for (Contact* c : contacts)
