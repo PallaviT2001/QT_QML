@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts
 
 ApplicationWindow {
     visible: true
@@ -11,12 +10,12 @@ ApplicationWindow {
     Grid {
         columns: 4
         rows: 3
-        spacing: 3
+        spacing: 4
         anchors.centerIn: parent
         Rectangle
         {
-            color: "white";
-            width: 100;
+            color: "white"
+            width: 100
             height: 100
 
             Image {
@@ -25,6 +24,7 @@ ApplicationWindow {
                 anchors.margins:12
                 anchors.centerIn: parent
                 anchors.fill:parent
+
             }
 
             MouseArea
@@ -35,13 +35,17 @@ ApplicationWindow {
                 }
             }
 
+            NumberAnimation { target: theItem; property: "x"; to: 500 }
+
+
         }
+
 
         Rectangle
         {
-            color: "white";
-            width: 100;
-            height: 100;
+            color: "white"
+            width: 100
+            height: 100
 
             Image {
                 id:img2
@@ -62,8 +66,8 @@ ApplicationWindow {
 
         Rectangle
         {
-            color: "white";
-            width: 100;
+            color: "white"
+            width: 100
             height: 100
 
             Image {
@@ -85,8 +89,8 @@ ApplicationWindow {
 
         Rectangle
         {
-            color: "white";
-            width: 100;
+            color: "white"
+            width: 100
             height: 100
 
             Image {
@@ -109,8 +113,8 @@ ApplicationWindow {
 
         Rectangle
         {
-            color: "white";
-            width: 100;
+            color: "white"
+            width: 100
             height: 100
 
             Image {
@@ -132,8 +136,8 @@ ApplicationWindow {
 
         Rectangle
         {
-            color: "white";
-            width: 100;
+            color: "white"
+            width: 100
             height: 100
 
             Image {
@@ -155,8 +159,8 @@ ApplicationWindow {
 
         Rectangle
         {
-            color: "white";
-            width: 100;
+            color: "white"
+            width: 100
             height: 100
 
             Image {
@@ -178,8 +182,8 @@ ApplicationWindow {
 
         Rectangle
         {
-            color: "white";
-            width: 100;
+            color: "white"
+            width: 100
             height: 100
 
             Image {
@@ -202,8 +206,8 @@ ApplicationWindow {
 
         Rectangle
         {
-            color: "white";
-            width: 100;
+            color: "white"
+            width: 100
             height: 100
 
             Image {
@@ -225,8 +229,8 @@ ApplicationWindow {
 
         Rectangle
         {
-            color: "white";
-            width: 100;
+            color: "white"
+            width: 100
             height: 100
 
             Image {
@@ -248,8 +252,8 @@ ApplicationWindow {
 
         Rectangle
         {
-            color: "white";
-            width: 100;
+            color: "white"
+            width: 100
             height: 100
 
             Image {
@@ -271,8 +275,8 @@ ApplicationWindow {
 
         Rectangle
         {
-            color: "white";
-            width: 100;
+            color: "white"
+            width: 100
             height: 100
 
             Image {
@@ -293,3 +297,4 @@ ApplicationWindow {
         }
     }
 }
+
