@@ -1,12 +1,52 @@
+# QT += quick
+
+# SOURCES += \
+#         main.cpp
+# resources.files = main.qml
+# resources.prefix = /$${TARGET}
+# RESOURCES += resources \
+#     Resources.qrc
+
+# # Additional import path used to resolve QML modules in Qt Creator's code model
+# QML_IMPORT_PATH =
+
+# # Additional import path used to resolve QML modules just for Qt Quick Designer
+# QML_DESIGNER_IMPORT_PATH =
+
+# # Default rules for deployment.
+# qnx: target.path = /tmp/$${TARGET}/bin
+# else: unix:!android: target.path = /opt/$${TARGET}/bin
+# !isEmpty(target.path): INSTALLS += target
+
+# HEADERS +=
+
+# DISTFILES += \
+#     ImageTile.qml
+
+
 QT += quick
 
 SOURCES += \
-        main.cpp
+    main.cpp
 
-resources.files = main.qml 
-resources.prefix = /$${TARGET}
-RESOURCES += resources \
-    Resources.qrc
+resources.files = \
+    main.qml \
+    ImageTile.qml \
+    Images/img1.png \
+    Images/img2.png \
+    Images/img3.png \
+    Images/img4.png \
+    Images/img5.png \
+    Images/img6.png \
+    Images/img7.png \
+    Images/img8.png \
+    Images/img9.png \
+    Images/img10.png \
+    Images/img11.png \
+    Images/img12.png
+
+resources.prefix = /Gallery_Application
+RESOURCES += resources
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -21,4 +61,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS +=
 
-DISTFILES +=
+
