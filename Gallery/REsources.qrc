@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>main.qml</file>
+        <file>Images/img1.png</file>
+        <file>Images/img2.png</file>
+        <file>Images/img3.png</file>
+        <file>Images/img4.png</file>
+        <file>Images/img5.png</file>
+        <file>Images/img6.png</file>
+        <file>Images/img7.png</file>
+        <file>Images/img8.png</file>
+        <file>Images/img9.png</file>
+        <file>Images/img10.png</file>
+        <file>Images/img12.png</file>
+        <file>Images/img11.png</file>
+    </qresource>
+</RCC>
