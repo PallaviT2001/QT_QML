@@ -8,8 +8,8 @@ Window {
 
     MyButton {
         anchors.centerIn: parent
-        text: "Press Me"
-        color: "red"
+        text: "Click Button"
+        color: "Green"
         onClicked: console.log("Button Clicked")
     }
 }

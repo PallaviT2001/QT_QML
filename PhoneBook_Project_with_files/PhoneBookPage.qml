@@ -121,3 +121,4 @@ Rectangle {
         onClicked: pageLoader.source = "HomePage.qml"
     }
 }
+
